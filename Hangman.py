@@ -1,14 +1,10 @@
-#importing the time module
 import time
-#importing the random module
 import random
 
-#welcoming the user
 name = input("What is your name? ")
 
 print ("\nHello, " + name+ "\nTime to play hangman!\n")
 
-#wait for 1 second
 time.sleep(1)
 
 print ("Start guessing...\nHint:It is a fruit")
