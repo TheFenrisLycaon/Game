@@ -21,3 +21,4 @@
 !.vscode/extensions.json
 *.code-workspace
 
+*__pycache__*
