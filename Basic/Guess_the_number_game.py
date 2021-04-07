@@ -1,8 +1,6 @@
-# using codeSkulpter
-
 import random
-
 import simplegui
+
 
 def new_game():
     global num
