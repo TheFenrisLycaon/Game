@@ -24,44 +24,51 @@ class utils:
         print("                             ")
 
 
-class Color:
-    WHITE = 0
-    BLACK = 1
+class ELEMENT:
+    class WHITE:
+        ROOK = "♜"
+        KNIGHT = "♞"
+        BISHOP = "♝"
+        QUEEN = "♛"
+        KING = "♚"
+        PAWN = "♟"
 
-
-class Position:
-    pass
+    class BLACK:
+        PAWN = "♙"
+        ROOK = "♖"
+        KNIGHT = "♘"
+        BISHOP = "♗"
+        QUEEN = "♕"
+        KING = "♔"
 
 
 class board:
     def __init__(self):
-        rwl = rook(0)
-        pw = pawn(0)
-        nwl = knight(0)
-        bwl = bishop(0)
-        kw = king(0)
-        qw = queen(0)
-        rbl = rook(1)
-        pb = pawn(1)
-        nbl = knight(1)
-        bbl = bishop(1)
-        kb = king(1)
-        qb = queen(1)
-        rwr = rook(0)
-        nwr = knight(0)
-        bwr = bishop(0)
-        rbr = rook(1)
-        pb = pawn(1)
-        nbr = knight(1)
-        bbr = bishop(1)
-        kb = king(1)
-        qb = queen(1)
+        rwl = rook(ELEMENT.WHITE.ROOK)
+        nwl = knight(ELEMENT.WHITE.KNIGHT)
+        bwl = bishop(ELEMENT.WHITE.BISHOP)
+        qw = queen(ELEMENT.WHITE.QUEEN)
+        kw = king(ELEMENT.WHITE.KING)
+        rwr = rook(ELEMENT.WHITE.ROOK)
+        nwr = knight(ELEMENT.WHITE.KNIGHT)
+        bwr = bishop(ELEMENT.WHITE.BISHOP)
+        pw = pawn(ELEMENT.WHITE.PAWN)
+        rbl = rook(ELEMENT.BLACK.ROOK)
+        nbl = knight(ELEMENT.BLACK.KNIGHT)
+        bbl = bishop(ELEMENT.BLACK.BISHOP)
+        qb = queen(ELEMENT.BLACK.QUEEN)
+        kb = king(ELEMENT.BLACK.KING)
+        rbr = rook(ELEMENT.BLACK.ROOK)
+        nbr = knight(ELEMENT.BLACK.KNIGHT)
+        bbr = bishop(ELEMENT.BLACK.BISHOP)
+        pb = pawn(ELEMENT.BLACK.PAWN)
+
         self.status = [
             [
                 rwl, nwl, bwl, kw, qw, bwr, nwr, rwr
             ],
             [pw for _ in range(8)],
-            *[[None] * 8 for _ in range(4)],
+            *[[" "] * 8 for _ in range(4)],
             [pb for _ in range(8)],
             [
                 rbl,  nbl, bbl, qb, kb,  bbr, nbr, rbr
@@ -72,29 +79,42 @@ class board:
         return [row[::-1] for row in reversed(self.status)]
 
     def show(self, flipStatus=False):
-        # for i, row in enumerate(self.status if not flipStatus else self.flip(self.status)):
-        #     row_strings = [
-        #         chrs.get(tile, chrs[(Color((i + j) % 2), Peice.EMPTY)])
-        #         for j, tile in enumerate(row)
-        #     ]
-        #     print("".join(row_strings))
-        print(self.status)
+        if flipStatus:
+            for row in self.status:
+                print(" --------------------------------------")
+                print('|', end="")
+                for p in row:
+                    print(p, ' | ', end="")
+                print("")
+            print(" --------------------------------------")
+        else:
+            for row in reversed(self.status):
+                print(" --------------------------------------")
+                print('|', end="")
+                for p in reversed(row):
+                    print(p, ' | ', end="")
+                print("")
+            print(" --------------------------------------")
 
 
 class Peice:
     def __int__(self):
-        self.color = 0
-        self.position = [0,0]
+        self.character = " "
+        self.position = [0, 0]
+
+    def __repr__(self) -> str:
+        return self.character
+
+    def __str__(self):
+        return self.character
 
 
 class pawn(Peice):
     def __init__(self, c):
-        super().color = Color.BLACK*c + Color.WHITE*c
-    
-    def positionUpdate(self,x,y):
-        super().position = [x,y]
-        # self.white = "\u265F"
-        # self.black = "\u2659"
+        self.character = c
+
+    def positionUpdate(self, x, y):
+        self.position = [x, y]
 
     def move(self):
         pass
@@ -102,12 +122,10 @@ class pawn(Peice):
 
 class bishop(Peice):
     def __init__(self, c):
-        super().color = Color.BLACK*c + Color.WHITE*c
-    
-    def positionUpdate(self,x,y):
-        super().position = [x,y]
-        # self.white = "\u265D"
-        # self.black = "\u2657"
+        self.character = c
+
+    def positionUpdate(self, x, y):
+        self.position = [x, y]
 
     def move(self):
         pass
@@ -115,12 +133,10 @@ class bishop(Peice):
 
 class knight(Peice):
     def __init__(self, c):
-        super().color = Color.BLACK*c + Color.WHITE*c
-    
-    def positionUpdate(self,x,y):
-        super().position = [x,y]
-        # self.white = "\u265E"
-        # self.black = "\u2654"
+        self.character = c
+
+    def positionUpdate(self, x, y):
+        self.position = [x, y]
 
     def move(self):
         pass
@@ -128,12 +144,10 @@ class knight(Peice):
 
 class rook(Peice):
     def __init__(self, c):
-        super().color = Color.BLACK*c + Color.WHITE*c
-    
-    def positionUpdate(self,x,y):
-        super().position = [x,y]
-        # self.white = "\u265C"
-        # self.black = "\u2656"
+        self.character = c
+
+    def positionUpdate(self, x, y):
+        self.position = [x, y]
 
     def move(self):
         pass
@@ -141,12 +155,10 @@ class rook(Peice):
 
 class queen(Peice):
     def __init__(self, c):
-        super().color = Color.BLACK*c + Color.WHITE*c
-    
-    def positionUpdate(self,x,y):
-        super().position = [x,y]
-        # self.white = "\u265B"
-        # self.black = "\u2655"
+        self.character = c
+
+    def positionUpdate(self, x, y):
+        self.position = [x, y]
 
     def move(self):
         pass
@@ -154,12 +166,10 @@ class queen(Peice):
 
 class king(Peice):
     def __init__(self, c):
-        super().color = Color.BLACK*c + Color.WHITE*c
-    
-    def positionUpdate(self,x,y):
-        super().position = [x,y]
-        # self.white = "\u265A"
-        # self.black = "\u2654"
+        self.character = c
+
+    def positionUpdate(self, x, y):
+        self.position = [x, y]
 
     def move(self):
         pass
