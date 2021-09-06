@@ -1,7 +1,6 @@
 [Dolphin]
 GroupedSorting=true
-PreviewsShown=false
 SortRole=type
-Timestamp=2021,4,7,17,23,43.861
+Timestamp=2021,7,28,0,5,17.778
 Version=4
-VisibleRoles=Icons_text,Icons_size
+VisibleRoles=Icons_text
