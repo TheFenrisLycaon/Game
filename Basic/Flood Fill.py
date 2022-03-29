@@ -7,8 +7,7 @@ class FloodFill:
         self.window_height = int(window_height)
         pygame.init()
         pygame.display.set_caption("Floodfill")
-        self.display = pygame.display.set_mode(
-            (self.window_width, self.window_height))
+        self.display = pygame.display.set_mode((self.window_width, self.window_height))
         self.surface = pygame.Surface(self.display.get_size())
         self.surface.fill((0, 0, 0))
         self.generateClosedPolygons()
@@ -19,6 +18,7 @@ class FloodFill:
             return
         from random import randint, uniform
         from math import pi, sin, cos
+
         for n in range(0, randint(0, 10)):
             x = randint(50, self.window_width - 50)
             y = randint(50, self.window_height - 50)
@@ -27,14 +27,17 @@ class FloodFill:
             vertices = []
             for i in range(0, randint(0, 9)):
                 dist = randint(0, 50)
-                vertices.append((int(x + cos(angle) * dist),
-                                 int(y + sin(angle) * dist)))
-                angle += uniform(0, pi/2)
+                vertices.append(
+                    (int(x + cos(angle) * dist), int(y + sin(angle) * dist))
+                )
+                angle += uniform(0, pi / 2)
             for i in range(0, len(vertices) - 1):
-                pygame.draw.line(self.surface, (255, 0, 0),
-                                 vertices[i], vertices[i + 1])
-            pygame.draw.line(self.surface, (255, 0, 0),
-                             vertices[len(vertices) - 1], vertices[0])
+                pygame.draw.line(
+                    self.surface, (255, 0, 0), vertices[i], vertices[i + 1]
+                )
+            pygame.draw.line(
+                self.surface, (255, 0, 0), vertices[len(vertices) - 1], vertices[0]
+            )
 
     def run(self):
         looping = True
@@ -65,13 +68,29 @@ class FloodFill:
         right = (point[0] + 1, point[1])
         top = (point[0], point[1] + 1)
         bottom = (point[0], point[1] - 1)
-        if self.inBounds(left) and left not in self.queue and pixArr[left[0], left[1]] == self.surface.map_rgb((0, 0, 0)):
+        if (
+            self.inBounds(left)
+            and left not in self.queue
+            and pixArr[left[0], left[1]] == self.surface.map_rgb((0, 0, 0))
+        ):
             self.queue.append(left)
-        if self.inBounds(right) and right not in self.queue and pixArr[right[0], right[1]] == self.surface.map_rgb((0, 0, 0)):
+        if (
+            self.inBounds(right)
+            and right not in self.queue
+            and pixArr[right[0], right[1]] == self.surface.map_rgb((0, 0, 0))
+        ):
             self.queue.append(right)
-        if self.inBounds(top) and top not in self.queue and pixArr[top[0], top[1]] == self.surface.map_rgb((0, 0, 0)):
+        if (
+            self.inBounds(top)
+            and top not in self.queue
+            and pixArr[top[0], top[1]] == self.surface.map_rgb((0, 0, 0))
+        ):
             self.queue.append(top)
-        if self.inBounds(bottom) and bottom not in self.queue and pixArr[bottom[0], bottom[1]] == self.surface.map_rgb((0, 0, 0)):
+        if (
+            self.inBounds(bottom)
+            and bottom not in self.queue
+            and pixArr[bottom[0], bottom[1]] == self.surface.map_rgb((0, 0, 0))
+        ):
             self.queue.append(bottom)
         del pixArr
 
@@ -85,5 +104,6 @@ class FloodFill:
 
 if __name__ == "__main__":
     import sys
+
     floodfill = FloodFill(640, 640)
     floodfill.run()

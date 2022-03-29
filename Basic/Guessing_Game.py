@@ -1,4 +1,5 @@
 import random
+
 a = comGuess = random.randint(0, 100)
 while True:
     userGuess = int(input("Enter your guessed no. b/w 0-100:"))

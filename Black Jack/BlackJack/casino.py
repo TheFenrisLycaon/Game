@@ -1,5 +1,5 @@
-
 import random
+
 # Card Value
 # 1: Ace
 # 2 - 10: 2 - 10
@@ -16,24 +16,24 @@ import random
 class cards:
     def __init__(self):
         self.cardsL = []
-        for x in range(1,14):
+        for x in range(1, 14):
             card = x
             for i in range(4):
                 if i == 0:
-                    suit = 'H'
+                    suit = "H"
                 elif i == 1:
-                    suit = 'D'
+                    suit = "D"
                 elif i == 2:
-                    suit = 'C'
+                    suit = "C"
                 elif i == 3:
-                    suit = 'S'
+                    suit = "S"
                 self.cardsL.append([card, suit])
-                
+
         self.cardsL = self.cardsL * 4
 
     def getCards(self):
         return self.cardsL
-        
+
 
 class dealer:
     def __init__(self, c):
@@ -47,7 +47,7 @@ class dealer:
         randCard = self.cardsL[r1]
         self.cardsL.pop(r1)
         self.cards.append(randCard)
-        
+
         r2 = random.randint(0, len(self.cardsL) - 1)
         randCard2 = self.cardsL[r2]
         self.cardsL.pop(r2)
@@ -61,11 +61,19 @@ class dealer:
         if self.cards[0][0] == 1 and self.cards[1][0] == 1:
             value = 2
         else:
-            if self.cards[0][0] == 11 or self.cards[0][0] == 12 or self.cards[0][0] == 13:
+            if (
+                self.cards[0][0] == 11
+                or self.cards[0][0] == 12
+                or self.cards[0][0] == 13
+            ):
                 value += 10
             else:
                 value += self.cards[0][0]
-            if self.cards[1][0] == 11 or self.cards[1][0] == 12 or self.cards[1][0] == 13:
+            if (
+                self.cards[1][0] == 11
+                or self.cards[1][0] == 12
+                or self.cards[1][0] == 13
+            ):
                 value += 10
             else:
                 value += self.cards[1][0]
@@ -114,7 +122,7 @@ class dealer:
         self.curValue = 0
 
 
-class player():
+class player:
     def __init__(self, c):
         self.cardsL = c
         self.cards = []
@@ -148,12 +156,11 @@ class player():
         if value == 11 and (self.cards[0][0] == 1 or self.cards[1][0] == 1):
             self.curValue = 21
 
-
         return self.cards
 
     def hit(self):
         value = 0
-        rand = random.randint(1,len(self.cardsL))
+        rand = random.randint(1, len(self.cardsL))
         card = self.cardsL[rand]
         self.cards.append(card)
         self.cardsL.pop(rand)
@@ -175,7 +182,6 @@ class player():
                 if self.curValue - 10 < 22:
                     self.curValue = self.curValue - 10
 
-
         return card
 
     def getScore(self):
@@ -186,6 +192,3 @@ c = cards()
 deck = c.getCards()
 d = dealer(deck)
 p = player(deck)
-
-
-

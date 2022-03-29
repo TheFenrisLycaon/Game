@@ -4,14 +4,15 @@ import os
 
 
 def clear():
-    """ Clearing the screen """
-    if os.name == 'nt':
-        _ = os.system('cls')
+    """Clearing the screen"""
+    if os.name == "nt":
+        _ = os.system("cls")
     else:
-        _ = os.system('clear')
+        _ = os.system("clear")
+
 
 def banner():
-    """ Printing banner """
+    """Printing banner"""
     print("  _____ _                    ")
     print(" / ____| |                   ")
     print("| |    | |__   ___  ___ ___  ")

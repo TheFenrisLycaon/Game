@@ -73,7 +73,9 @@ def game_board(game_map, player=0, row=0, column=0, just_display=False):
         return game_map
 
     except IndexError:
-        print("Did you attempt to play a row or column outside the range of 0,1 or 2? (IndexError)")
+        print(
+            "Did you attempt to play a row or column outside the range of 0,1 or 2? (IndexError)"
+        )
         return False
     except Exception as e:
         print(str(e))
@@ -98,7 +100,9 @@ while play:
             print("Player: {}".format(current_player))
             row_choice = int(input("Which row? "))
             column_choice = int(input("Which column? "))
-            Played = game_board(game, player=current_player, row=row_choice, column=column_choice)
+            Played = game_board(
+                game, player=current_player, row=row_choice, column=column_choice
+            )
 
         if win(game):
             game_won = True

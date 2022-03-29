@@ -1,11 +1,14 @@
 import random
+
 import pygame
 
-BLACK = (0,0,0)
+BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
+
 pygame.init()
+
 size = (700, 500)
 screen = pygame.display.set_mode(size)
 
@@ -29,8 +32,7 @@ class Ball(object):
         return self.__yVel
 
     def draw(self):
-        pygame.draw.circle(screen, (255, 0, 0),
-                           (self._xLoc, self._yLoc), self._radius)
+        pygame.draw.circle(screen, (255, 0, 0), (self._xLoc, self._yLoc), self._radius)
 
     def update(self, paddle, brickwall):
         self._xLoc += self.__xVel
@@ -51,11 +53,11 @@ class Ball(object):
         paddleX = paddle._xLoc
         ballX = self._xLoc
         ballY = self._yLoc
-        if ((ballX + self._radius) >= paddleX and ballX <= (paddleX + paddleW)) \
-                and ((ballY + self._radius) >= paddleY and ballY <= (paddleY + paddleH)):
+        if ((ballX + self._radius) >= paddleX and ballX <= (paddleX + paddleW)) and (
+            (ballY + self._radius) >= paddleY and ballY <= (paddleY + paddleH)
+        ):
             self.__yVel *= -1
         return False
-
 
 
 class Paddle(object):
@@ -70,8 +72,12 @@ class Paddle(object):
         self.__H = h
 
     def draw(self):
-        pygame.draw.rect(screen, (255, 255, 255), (self._xLoc,
-                                             self._yLoc, self._width, self._height), 0)
+        pygame.draw.rect(
+            screen,
+            (255, 255, 255),
+            (self._xLoc, self._yLoc, self._width, self._height),
+            0,
+        )
 
     def update(self):
         x, y = pygame.mouse.get_pos()
@@ -92,8 +98,12 @@ class Brick(pygame.sprite.Sprite):
         self.__isInGroup = False
 
     def draw(self):
-        pygame.draw.rect(screen, (255 ,177, 237), (self._xLoc,
-                                                  self._yLoc, self._width, self._height), 0)
+        pygame.draw.rect(
+            screen,
+            (255, 177, 237),
+            (self._xLoc, self._yLoc, self._width, self._height),
+            0,
+        )
 
     def add(self, group):
         group.add(self)
@@ -115,14 +125,16 @@ class Brick(pygame.sprite.Sprite):
         ballY = ball._yLoc
         ballXVel = ball.getXVel()
         ballYVel = ball.getYVel()
-        if ((ballX + ball._radius) >= brickX and (ballX + ball._radius) <= (brickX + brickW)) \
-                and ((ballY - ball._radius) >= brickY and (ballY - ball._radius)
-                     <= (brickY + brickH)):
+        if (
+            (ballX + ball._radius) >= brickX
+            and (ballX + ball._radius) <= (brickX + brickW)
+        ) and (
+            (ballY - ball._radius) >= brickY
+            and (ballY - ball._radius) <= (brickY + brickH)
+        ):
             return True
         else:
             return False
-
-
 
 
 class BrickWall(pygame.sprite.Group):
@@ -155,7 +167,7 @@ class BrickWall(pygame.sprite.Group):
 
     def update(self, ball):
         for i in range(len(self._bricks)):
-            if ((self._bricks[i] != None) and self._bricks[i].collide(ball)):
+            if (self._bricks[i] != None) and self._bricks[i].collide(ball):
                 self._bricks[i] = None
         for brick in self._bricks:
             if brick == None:
@@ -181,10 +193,10 @@ pygame.display.set_caption("Brickout-game")
 done = False
 clock = pygame.time.Clock()
 pygame.font.init()
-mgGameOver = pygame.font.SysFont('courier', 32)
-mgWin = pygame.font.SysFont('courier', 32)
-mgScore = pygame.font.SysFont('courier', 32)
-textsurfaceGameOver = mgGameOver.render('Game Over!', False, WHITE)
+mgGameOver = pygame.font.SysFont("courier", 32)
+mgWin = pygame.font.SysFont("courier", 32)
+mgScore = pygame.font.SysFont("courier", 32)
+textsurfaceGameOver = mgGameOver.render("Game Over!", False, WHITE)
 textsurfaceWin = mgWin.render("You win!", False, WHITE)
 textsurfaceScore = mgScore.render("score: " + str(score), False, WHITE)
 while not done:
@@ -196,8 +208,7 @@ while not done:
         brickWall.draw()
         if brickWall.collide(ball):
             score += 10
-        textsurfaceScore = mgScore.render(
-            "score: " + str(score), False, WHITE)
+        textsurfaceScore = mgScore.render("score: " + str(score), False, WHITE)
         screen.blit(textsurfaceScore, (300, 0))
         brickWall.update(ball)
         paddle.draw()
@@ -211,13 +222,11 @@ while not done:
     else:
         if isGameOver:
             screen.blit(textsurfaceGameOver, (0, 0))
-            textsurfaceScore = mgScore.render(
-                "score: " + str(score), False, WHITE)
+            textsurfaceScore = mgScore.render("score: " + str(score), False, WHITE)
             screen.blit(textsurfaceScore, (300, 0))
         elif brickWall.hasWin():
             screen.blit(textsurfaceWin, (0, 0))
-            textsurfaceScore = mgScore.render(
-                "score: " + str(score), False, WHITE)
+            textsurfaceScore = mgScore.render("score: " + str(score), False, WHITE)
             screen.blit(textsurfaceScore, (300, 0))
     pygame.display.flip()
     clock.tick(60)

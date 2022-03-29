@@ -9,6 +9,7 @@ import os
 
 screen = pygame.display.set_mode((1200, 720))
 
+
 class spot:
     def __init__(self, x, y):
         self.i = x
@@ -23,7 +24,7 @@ class spot:
         self.value = 1
 
     def show(self, color, st):
-        if self.closed == False :
+        if self.closed == False:
             pygame.draw.rect(screen, color, (self.i * w, self.j * h, w, h), st)
             pygame.display.update()
 
@@ -34,19 +35,19 @@ class spot:
     def addNeighbors(self, grid):
         i = self.i
         j = self.j
-        if i < cols-1 and grid[self.i + 1][j].obs == False:
+        if i < cols - 1 and grid[self.i + 1][j].obs == False:
             self.neighbors.append(grid[self.i + 1][j])
         if i > 0 and grid[self.i - 1][j].obs == False:
             self.neighbors.append(grid[self.i - 1][j])
-        if j < row-1 and grid[self.i][j + 1].obs == False:
+        if j < row - 1 and grid[self.i][j + 1].obs == False:
             self.neighbors.append(grid[self.i][j + 1])
         if j > 0 and grid[self.i][j - 1].obs == False:
             self.neighbors.append(grid[self.i][j - 1])
 
 
-cols = int((640/25)*1200)
+cols = int((640 / 25) * 1200)
 grid = [0 for i in range(cols)]
-row = int((640/25)*720)
+row = int((640 / 25) * 720)
 openSet = []
 closedSet = []
 red = (255, 0, 0)
@@ -75,35 +76,39 @@ for i in range(cols):
     for j in range(row):
         grid[i][j].show((255, 255, 255), 1)
 
-for i in range(0,row):
+for i in range(0, row):
     grid[0][i].show(grey, 0)
     grid[0][i].obs = True
-    grid[cols-1][i].obs = True
-    grid[cols-1][i].show(grey, 0)
-    grid[i][row-1].show(grey, 0)
+    grid[cols - 1][i].obs = True
+    grid[cols - 1][i].show(grey, 0)
+    grid[i][row - 1].show(grey, 0)
     grid[i][0].show(grey, 0)
     grid[i][0].obs = True
-    grid[i][row-1].obs = True
+    grid[i][row - 1].obs = True
+
 
 def onsubmit():
     global start
     global end
-    st = startBox.get().split(',')
-    ed = endBox.get().split(',')
+    st = startBox.get().split(",")
+    ed = endBox.get().split(",")
     start = grid[int(st[0])][int(st[1])]
     end = grid[int(ed[0])][int(ed[1])]
     window.quit()
     window.destroy()
 
+
 window = Tk()
-label = Label(window, text='Start(x,y): ')
+label = Label(window, text="Start(x,y): ")
 startBox = Entry(window)
-label1 = Label(window, text='End(x,y): ')
+label1 = Label(window, text="End(x,y): ")
 endBox = Entry(window)
 var = IntVar()
-showPath = ttk.Checkbutton(window, text='Show Steps :', onvalue=1, offvalue=0, variable=var)
+showPath = ttk.Checkbutton(
+    window, text="Show Steps :", onvalue=1, offvalue=0, variable=var
+)
 
-submit = Button(window, text='Submit', command=onsubmit)
+submit = Button(window, text="Submit", command=onsubmit)
 
 showPath.grid(columnspan=2, row=2)
 submit.grid(columnspan=2, row=3)
@@ -118,6 +123,7 @@ mainloop()
 pygame.init()
 openSet.append(start)
 
+
 def mousePress(x):
     t = x[0]
     w = x[1]
@@ -131,6 +137,7 @@ def mousePress(x):
                 acess.show((255, 255, 255), 0)
     except:
         pass
+
 
 end.show((255, 8, 127), 0)
 start.show((255, 8, 127), 0)
@@ -157,9 +164,10 @@ for i in range(cols):
     for j in range(row):
         grid[i][j].addNeighbors(grid)
 
+
 def heurisitic(n, e):
-    d = math.sqrt((n.i - e.i)**2 + (n.j - e.j)**2)
-    #d = abs(n.i - e.i) + abs(n.j - e.j)
+    d = math.sqrt((n.i - e.i) ** 2 + (n.j - e.j) ** 2)
+    # d = abs(n.i - e.i) + abs(n.j - e.j)
     return d
 
 
@@ -174,19 +182,26 @@ def main():
 
         current = openSet[lowestIndex]
         if current == end:
-            print('done', current.f)
-            start.show((255,8,127),0)
+            print("done", current.f)
+            start.show((255, 8, 127), 0)
             temp = current.f
             for i in range(round(current.f)):
                 current.closed = False
-                current.show((0,0,255), 0)
+                current.show((0, 0, 255), 0)
                 current = current.previous
             end.show((255, 8, 127), 0)
 
             Tk().wm_withdraw()
-            result = messagebox.askokcancel('Program Finished', ('The program finished, the shortest distance \n to the path is ' + str(temp) + ' blocks away, \n would you like to re run the program?'))
+            result = messagebox.askokcancel(
+                "Program Finished",
+                (
+                    "The program finished, the shortest distance \n to the path is "
+                    + str(temp)
+                    + " blocks away, \n would you like to re run the program?"
+                ),
+            )
             if result == True:
-                os.execl(sys.executable,sys.executable, *sys.argv)
+                os.execl(sys.executable, sys.executable, *sys.argv)
             else:
                 ag = True
                 while ag:
@@ -233,4 +248,3 @@ while True:
         pygame.quit()
     pygame.display.update()
     main()
-

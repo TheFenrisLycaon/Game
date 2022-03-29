@@ -5,7 +5,7 @@ def solve(bo):
     else:
         row, col = find
 
-    for i in range(1,10):
+    for i in range(1, 10):
         if valid(bo, i, (row, col)):
             bo[row][col] = i
 
@@ -29,9 +29,9 @@ def valid(bo, num, pos):
     xbox = pos[1] // 3
     ybox = pos[0] // 3
 
-    for i in range(ybox*3, ybox*3 + 3):
-        for j in range(xbox * 3, xbox*3 + 3):
-            if bo[i][j] == num and (i,j) != pos:
+    for i in range(ybox * 3, ybox * 3 + 3):
+        for j in range(xbox * 3, xbox * 3 + 3):
+            if bo[i][j] == num and (i, j) != pos:
                 return False
 
     return True
@@ -56,6 +56,6 @@ def find_empty(bo):
     for i in range(len(bo)):
         for j in range(len(bo[0])):
             if bo[i][j] == 0:
-                return (i, j) 
+                return (i, j)
 
     return None

@@ -5,12 +5,13 @@ import os
 import importlib
 import contextlib
 
+
 def install(package):
-    '''
+    """
     installs a package using pip
 
     :param package: string
-    '''
+    """
     subprocess.call([sys.executable, "-m", "pip", "install", package])
 
 
@@ -28,7 +29,12 @@ except FileNotFoundError:
 
 
 if len(required) > 0:
-    print("[INPUT] You are about to install", len(required), "packages, would you like to proceed (y/n):", end=" ")
+    print(
+        "[INPUT] You are about to install",
+        len(required),
+        "packages, would you like to proceed (y/n):",
+        end=" ",
+    )
     ans = input()
 
     if ans.lower() == "y":
@@ -51,7 +57,7 @@ if len(required) > 0:
                         get_pip.main()
                         print("[LOG] Pip has been installed")
 
-                    print("[LOG] Installing", package)    
+                    print("[LOG] Installing", package)
                     install(package)
                     with contextlib.redirect_stdout(None):
                         __import__(package)
@@ -59,16 +65,21 @@ if len(required) > 0:
                 except Exception as e:
                     print("[ERROR] Could not install", package, "-", e)
                     failed.append(package)
-                        
+
     else:
         print("[STOP] Operation terminated by user")
 else:
     print("[LOG] No packages to install")
 
 if len(failed) > 0:
-    print("[FAILED]", len(failed), "package(s) were not installed. Failed package install(s):", end=" ")
+    print(
+        "[FAILED]",
+        len(failed),
+        "package(s) were not installed. Failed package install(s):",
+        end=" ",
+    )
     for x, package in enumerate(failed):
-        if x != len(failed) -1:
+        if x != len(failed) - 1:
             print(package, end=",")
         else:
             print(package)

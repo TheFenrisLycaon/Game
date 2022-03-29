@@ -1,2 +1,2 @@
 from board import board
-from  pieces import *
+from pieces import *

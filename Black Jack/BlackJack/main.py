@@ -10,14 +10,14 @@ from tkinter import messagebox
 
 
 pygame.init()
-cardBack = pygame.image.load(os.path.join('png', 'cardBack.png'))
+cardBack = pygame.image.load(os.path.join("png", "cardBack.png"))
 screen = pygame.display.set_mode((1300, 900))
-pygame.display.set_caption('Black Jack')
+pygame.display.set_caption("Black Jack")
 clock = pygame.time.Clock()
-myfont = pygame.font.SysFont('monospace', 70)
-smallFont = pygame.font.SysFont('monospace', 30)
-bg = pygame.image.load(os.path.join('back', 'background.jpg'))
-screen.fill((0,128,0))
+myfont = pygame.font.SysFont("monospace", 70)
+smallFont = pygame.font.SysFont("monospace", 30)
+bg = pygame.image.load(os.path.join("back", "background.jpg"))
+screen.fill((0, 128, 0))
 clock = pygame.time.Clock()
 deck = casino.cards()
 cardList = deck.getCards()
@@ -30,71 +30,71 @@ onTable = []
 topCards = []
 
 cardImg = [None]
-    # Load 52 Images
-two_clubs = pygame.image.load(os.path.join('png', '2_of_clubs.png'))
-two_diamonds = pygame.image.load(os.path.join('png', '2_of_diamonds.png'))
-two_hearts = pygame.image.load(os.path.join('png', '2_of_hearts.png'))
-two_spades = pygame.image.load(os.path.join('png', '2_of_spades.png'))
+# Load 52 Images
+two_clubs = pygame.image.load(os.path.join("png", "2_of_clubs.png"))
+two_diamonds = pygame.image.load(os.path.join("png", "2_of_diamonds.png"))
+two_hearts = pygame.image.load(os.path.join("png", "2_of_hearts.png"))
+two_spades = pygame.image.load(os.path.join("png", "2_of_spades.png"))
 
-three_clubs = pygame.image.load(os.path.join('png', '3_of_clubs.png'))
-three_spades = pygame.image.load(os.path.join('png', '3_of_spades.png'))
-three_diamonds = pygame.image.load(os.path.join('png', '3_of_diamonds.png'))
-three_hearts = pygame.image.load(os.path.join('png', '3_of_hearts.png'))
+three_clubs = pygame.image.load(os.path.join("png", "3_of_clubs.png"))
+three_spades = pygame.image.load(os.path.join("png", "3_of_spades.png"))
+three_diamonds = pygame.image.load(os.path.join("png", "3_of_diamonds.png"))
+three_hearts = pygame.image.load(os.path.join("png", "3_of_hearts.png"))
 
-four_clubs = pygame.image.load(os.path.join('png', '4_of_clubs.png'))
-four_spades = pygame.image.load(os.path.join('png', '4_of_spades.png'))
-four_diamonds = pygame.image.load(os.path.join('png', '4_of_diamonds.png'))
-four_hearts = pygame.image.load(os.path.join('png', '4_of_hearts.png'))
+four_clubs = pygame.image.load(os.path.join("png", "4_of_clubs.png"))
+four_spades = pygame.image.load(os.path.join("png", "4_of_spades.png"))
+four_diamonds = pygame.image.load(os.path.join("png", "4_of_diamonds.png"))
+four_hearts = pygame.image.load(os.path.join("png", "4_of_hearts.png"))
 
-five_clubs = pygame.image.load(os.path.join('png', '5_of_clubs.png'))
-five_spades = pygame.image.load(os.path.join('png', '5_of_spades.png'))
-five_diamonds = pygame.image.load(os.path.join('png', '5_of_diamonds.png'))
-five_hearts = pygame.image.load(os.path.join('png', '5_of_hearts.png'))
+five_clubs = pygame.image.load(os.path.join("png", "5_of_clubs.png"))
+five_spades = pygame.image.load(os.path.join("png", "5_of_spades.png"))
+five_diamonds = pygame.image.load(os.path.join("png", "5_of_diamonds.png"))
+five_hearts = pygame.image.load(os.path.join("png", "5_of_hearts.png"))
 
-six_clubs = pygame.image.load(os.path.join('png', '6_of_clubs.png'))
-six_spades = pygame.image.load(os.path.join('png', '6_of_spades.png'))
-six_diamonds = pygame.image.load(os.path.join('png', '6_of_diamonds.png'))
-six_hearts = pygame.image.load(os.path.join('png', '6_of_hearts.png'))
+six_clubs = pygame.image.load(os.path.join("png", "6_of_clubs.png"))
+six_spades = pygame.image.load(os.path.join("png", "6_of_spades.png"))
+six_diamonds = pygame.image.load(os.path.join("png", "6_of_diamonds.png"))
+six_hearts = pygame.image.load(os.path.join("png", "6_of_hearts.png"))
 
-seven_clubs = pygame.image.load(os.path.join('png', '7_of_clubs.png'))
-seven_spades = pygame.image.load(os.path.join('png', '7_of_spades.png'))
-seven_diamonds = pygame.image.load(os.path.join('png', '7_of_diamonds.png'))
-seven_hearts = pygame.image.load(os.path.join('png', '7_of_hearts.png'))
+seven_clubs = pygame.image.load(os.path.join("png", "7_of_clubs.png"))
+seven_spades = pygame.image.load(os.path.join("png", "7_of_spades.png"))
+seven_diamonds = pygame.image.load(os.path.join("png", "7_of_diamonds.png"))
+seven_hearts = pygame.image.load(os.path.join("png", "7_of_hearts.png"))
 
-eight_clubs = pygame.image.load(os.path.join('png', '8_of_clubs.png'))
-eight_spades = pygame.image.load(os.path.join('png', '8_of_spades.png'))
-eight_diamonds = pygame.image.load(os.path.join('png', '8_of_diamonds.png'))
-eight_hearts = pygame.image.load(os.path.join('png', '8_of_hearts.png'))
+eight_clubs = pygame.image.load(os.path.join("png", "8_of_clubs.png"))
+eight_spades = pygame.image.load(os.path.join("png", "8_of_spades.png"))
+eight_diamonds = pygame.image.load(os.path.join("png", "8_of_diamonds.png"))
+eight_hearts = pygame.image.load(os.path.join("png", "8_of_hearts.png"))
 
-nine_clubs = pygame.image.load(os.path.join('png', '9_of_clubs.png'))
-nine_spades = pygame.image.load(os.path.join('png', '9_of_spades.png'))
-nine_diamonds = pygame.image.load(os.path.join('png', '9_of_diamonds.png'))
-nine_hearts = pygame.image.load(os.path.join('png', '9_of_hearts.png'))
+nine_clubs = pygame.image.load(os.path.join("png", "9_of_clubs.png"))
+nine_spades = pygame.image.load(os.path.join("png", "9_of_spades.png"))
+nine_diamonds = pygame.image.load(os.path.join("png", "9_of_diamonds.png"))
+nine_hearts = pygame.image.load(os.path.join("png", "9_of_hearts.png"))
 
-ten_clubs = pygame.image.load(os.path.join('png', '10_of_clubs.png'))
-ten_spades = pygame.image.load(os.path.join('png', '10_of_diamonds.png'))
-ten_diamonds = pygame.image.load(os.path.join('png', '10_of_hearts.png'))
-ten_hearts = pygame.image.load(os.path.join('png', '10_of_spades.png'))
+ten_clubs = pygame.image.load(os.path.join("png", "10_of_clubs.png"))
+ten_spades = pygame.image.load(os.path.join("png", "10_of_diamonds.png"))
+ten_diamonds = pygame.image.load(os.path.join("png", "10_of_hearts.png"))
+ten_hearts = pygame.image.load(os.path.join("png", "10_of_spades.png"))
 
-jack_clubs = pygame.image.load(os.path.join('png', 'jack_of_clubs.png'))
-jack_spades = pygame.image.load(os.path.join('png', 'jack_of_spades.png'))
-jack_diamonds = pygame.image.load(os.path.join('png', 'jack_of_diamonds.png'))
-jack_hearts = pygame.image.load(os.path.join('png', 'jack_of_hearts.png'))
+jack_clubs = pygame.image.load(os.path.join("png", "jack_of_clubs.png"))
+jack_spades = pygame.image.load(os.path.join("png", "jack_of_spades.png"))
+jack_diamonds = pygame.image.load(os.path.join("png", "jack_of_diamonds.png"))
+jack_hearts = pygame.image.load(os.path.join("png", "jack_of_hearts.png"))
 
-queen_clubs = pygame.image.load(os.path.join('png', 'queen_of_clubs.png'))
-queen_spades = pygame.image.load(os.path.join('png', 'queen_of_spades.png'))
-queen_diamonds = pygame.image.load(os.path.join('png', 'queen_of_diamonds.png'))
-queen_hearts = pygame.image.load(os.path.join('png', 'queen_of_hearts.png'))
+queen_clubs = pygame.image.load(os.path.join("png", "queen_of_clubs.png"))
+queen_spades = pygame.image.load(os.path.join("png", "queen_of_spades.png"))
+queen_diamonds = pygame.image.load(os.path.join("png", "queen_of_diamonds.png"))
+queen_hearts = pygame.image.load(os.path.join("png", "queen_of_hearts.png"))
 
-king_clubs = pygame.image.load(os.path.join('png', 'king_of_clubs.png'))
-king_spades = pygame.image.load(os.path.join('png', 'king_of_spades.png'))
-king_diamonds = pygame.image.load(os.path.join('png', 'king_of_diamonds.png'))
-king_hearts = pygame.image.load(os.path.join('png', 'king_of_hearts.png'))
+king_clubs = pygame.image.load(os.path.join("png", "king_of_clubs.png"))
+king_spades = pygame.image.load(os.path.join("png", "king_of_spades.png"))
+king_diamonds = pygame.image.load(os.path.join("png", "king_of_diamonds.png"))
+king_hearts = pygame.image.load(os.path.join("png", "king_of_hearts.png"))
 
-ace_clubs = pygame.image.load(os.path.join('png', 'ace_of_clubs.png'))
-ace_spades = pygame.image.load(os.path.join('png', 'ace_of_spades.png'))
-ace_diamonds = pygame.image.load(os.path.join('png', 'ace_of_diamonds.png'))
-ace_hearts = pygame.image.load(os.path.join('png', 'ace_of_hearts.png'))
+ace_clubs = pygame.image.load(os.path.join("png", "ace_of_clubs.png"))
+ace_spades = pygame.image.load(os.path.join("png", "ace_of_spades.png"))
+ace_diamonds = pygame.image.load(os.path.join("png", "ace_of_diamonds.png"))
+ace_hearts = pygame.image.load(os.path.join("png", "ace_of_hearts.png"))
 
 cardImg.append([ace_clubs, ace_diamonds, ace_hearts, ace_spades])
 cardImg.append([two_clubs, two_diamonds, two_hearts, two_spades])
@@ -110,11 +110,11 @@ cardImg.append([jack_clubs, jack_diamonds, jack_hearts, jack_spades])
 cardImg.append([queen_clubs, queen_diamonds, queen_hearts, queen_spades])
 cardImg.append([king_clubs, king_diamonds, king_hearts, king_spades])
 
-one = pygame.image.load(os.path.join('chips', '1.png'))
-two = pygame.image.load(os.path.join('chips', '2.png'))
-five = pygame.image.load(os.path.join('chips', '5.png'))
-ten = pygame.image.load(os.path.join('chips', '10.png'))
-twenty = pygame.image.load(os.path.join('chips', '20.png'))
+one = pygame.image.load(os.path.join("chips", "1.png"))
+two = pygame.image.load(os.path.join("chips", "2.png"))
+five = pygame.image.load(os.path.join("chips", "5.png"))
+ten = pygame.image.load(os.path.join("chips", "10.png"))
+twenty = pygame.image.load(os.path.join("chips", "20.png"))
 
 didBet = False
 betChips = 0
@@ -130,9 +130,9 @@ chips.append([twenty, 20, 525, 20])
 
 
 def lost():
-    screen.fill((0,128,0))
-    label = myfont.render('Press any key to play again', 1, (255,255,255))
-    label2 = myfont.render('Out of Chips...', 1, (255,255,255))
+    screen.fill((0, 128, 0))
+    label = myfont.render("Press any key to play again", 1, (255, 255, 255))
+    label2 = myfont.render("Out of Chips...", 1, (255, 255, 255))
     screen.blit(label, (100, 450))
     screen.blit(label2, (350, 350))
     pygame.display.update()
@@ -148,12 +148,12 @@ def lost():
 def bet():
     global betChips
     global playerChips
-    label = myfont.render('Please place your bet: ', 1, (255,255,255))
+    label = myfont.render("Please place your bet: ", 1, (255, 255, 255))
     screen.blit(label, (230, 430))
     updateChips()
     pygame.display.update()
     while True:
-        label = smallFont.render('Press space when finished', 1, (255, 255, 255))
+        label = smallFont.render("Press space when finished", 1, (255, 255, 255))
         screen.blit(label, (430, 850))
         updateChips()
         pygame.display.update()
@@ -165,11 +165,19 @@ def bet():
                     if pos[1] > chips[i][2] and pos[1] < chips[i][2] + 50:
                         if playerChips - chips[i][3] >= 0:
                             betChips += chips[i][3]
-                            dealChips(chips[i][0], 525 + i * 50, 550, chips[i][1], chips[i][2])
+                            dealChips(
+                                chips[i][0], 525 + i * 50, 550, chips[i][1], chips[i][2]
+                            )
                             playerChips -= chips[i][3]
                         else:
                             root = tk.Tk()
-                            messagebox.showinfo('Not enough chips!', ('You do not have enough \n chips to bet that amount, \n your current amount of chips is ' + str(playerChips)))
+                            messagebox.showinfo(
+                                "Not enough chips!",
+                                (
+                                    "You do not have enough \n chips to bet that amount, \n your current amount of chips is "
+                                    + str(playerChips)
+                                ),
+                            )
                             try:
                                 root.destroy()
                             except:
@@ -186,16 +194,16 @@ def drawChip(img, x, y):
     w = 50
     h = 50
     newIMG = pygame.transform.scale(img, (w, h))
-    screen.blit(newIMG, (x,y))
+    screen.blit(newIMG, (x, y))
 
 
 def firstStart():
     global playerChips
     reset()
     playerChips = 50
-    screen.fill((0,128,0))
-    label = myfont.render('Welcome to Black Jack!', 1, (255, 255, 255))
-    label2 = myfont.render('Press space to start', 1, (255,255,255))
+    screen.fill((0, 128, 0))
+    label = myfont.render("Welcome to Black Jack!", 1, (255, 255, 255))
+    label2 = myfont.render("Press space to start", 1, (255, 255, 255))
     screen.blit(label2, (225, 550))
     screen.blit(label, (175, 400))
     pygame.display.update()
@@ -214,9 +222,10 @@ def firstStart():
             bet()
             main()
 
+
 def restart():
     global playerChips
-    screen.fill((0,128,0))
+    screen.fill((0, 128, 0))
     pygame.display.update()
     pygame.init()
 
@@ -231,6 +240,7 @@ def restart():
         dealplayer(500, 50)
         bet()
         main()
+
 
 def reset():
     global onTable
@@ -285,7 +295,7 @@ def dealChips(img, x, y, s, w):
     betArray.append([img, movex, movey])
 
 
-def dealplayer(x,y):
+def dealplayer(x, y):
     endx = x
     endy = y
     movex = 0
@@ -295,8 +305,8 @@ def dealplayer(x,y):
 
     for i in range(round(h / 10)):
         screen.fill((0, 128, 0))
-        movex += endx / (h/10)
-        movey += endy / (h/10)
+        movex += endx / (h / 10)
+        movey += endy / (h / 10)
         drawCard(cardBack, movex, movey)
         for d in range(len(onTable)):
             drawCard(onTable[d][0], onTable[d][1], onTable[d][2])
@@ -314,7 +324,8 @@ def dealplayer(x,y):
 
     onTable.append([cardBack, x, y])
 
-def dealplayerHit(hit,x,y):
+
+def dealplayerHit(hit, x, y):
     endx = x
     endy = y
     movex = 0
@@ -325,8 +336,8 @@ def dealplayerHit(hit,x,y):
     for i in range(round(h / 10)):
         screen.fill((0, 128, 0))
         updateChips()
-        movex += endx / (h/10)
-        movey += endy / (h/10)
+        movex += endx / (h / 10)
+        movey += endy / (h / 10)
         drawCard(cardBack, movex, movey)
         for d in range(len(onTable)):
             drawCard(onTable[d][0], onTable[d][1], onTable[d][2])
@@ -344,27 +355,27 @@ def dealplayerHit(hit,x,y):
 
 def cardImage(n, suit):
 
-    if suit == 'C':
+    if suit == "C":
         return cardImg[n][0]
-    elif suit == 'D':
+    elif suit == "D":
         return cardImg[n][1]
-    elif suit == 'H':
+    elif suit == "H":
         return cardImg[n][2]
-    elif suit == 'S':
+    elif suit == "S":
         return cardImg[n][3]
 
 
 def updateChips():
     global playerChips
-    pygame.draw.rect(screen, (0,128,0), (39, 585, 200, 40), 0)
-    label = smallFont.render('Chips: ' + str(playerChips), 1, (255,255,255))
+    pygame.draw.rect(screen, (0, 128, 0), (39, 585, 200, 40), 0)
+    label = smallFont.render("Chips: " + str(playerChips), 1, (255, 255, 255))
     screen.blit(label, (10, 585))
 
 
 def updateScore(turn=False):
     dScore = d.getScore()
     pScore = p.getScore()
-    score1 = smallFont.render(str(dScore), 1, (255,255,255))
+    score1 = smallFont.render(str(dScore), 1, (255, 255, 255))
     score2 = smallFont.render(str(pScore), 1, (255, 255, 255))
     screen.blit(score2, (1150, 700))
     if turn:
@@ -377,7 +388,7 @@ def drawCard(img, x, y):
     h = 181
     pygame.draw.rect(screen, white, (x - 5, y - 4, w + 10, h + 8), 0)
     newIMG = pygame.transform.scale(img, (w, h))
-    screen.blit(newIMG, (x,y))
+    screen.blit(newIMG, (x, y))
 
 
 def main():
@@ -406,7 +417,7 @@ def main():
         if playerReveal == False:
             drawCard(cardBack, 675, 650)
             drawCard(cardBack, 500, 650)
-            label = smallFont.render('Press space to reveal cards', 1, (255,255,255))
+            label = smallFont.render("Press space to reveal cards", 1, (255, 255, 255))
             screen.blit(label, (430, 850))
             ev = pygame.event.poll()
             if ev.type == pygame.QUIT:
@@ -418,12 +429,22 @@ def main():
                     allowHit = True
                     drawCard(cardImage(playerCards[0][0], playerCards[0][1]), 675, 650)
                     drawCard(cardImage(playerCards[1][0], playerCards[1][1]), 500, 650)
-                    onTable[0] = [cardImage(playerCards[0][0], playerCards[0][1]), 675, 650]
-                    onTable[1] = [cardImage(playerCards[1][0], playerCards[1][1]), 500, 650]
+                    onTable[0] = [
+                        cardImage(playerCards[0][0], playerCards[0][1]),
+                        675,
+                        650,
+                    ]
+                    onTable[1] = [
+                        cardImage(playerCards[1][0], playerCards[1][1]),
+                        500,
+                        650,
+                    ]
                     pygame.draw.rect(screen, (0, 128, 0), (429, 849, 550, 100))
             pygame.display.update()
         else:
-            label = smallFont.render('Press space to hit and tab to stay', 1, (255, 255, 255))
+            label = smallFont.render(
+                "Press space to hit and tab to stay", 1, (255, 255, 255)
+            )
             screen.blit(label, (350, 850))
             updateScore()
             pygame.display.update()
@@ -459,13 +480,13 @@ def main():
                     pygame.display.update()
 
             if p.getScore() > 21:
-                label = myfont.render('You Went Over 21 :(', 1, (255,255,255))
+                label = myfont.render("You Went Over 21 :(", 1, (255, 255, 255))
                 screen.blit(label, (300, 430))
                 allowHit = False
                 updateChips()
                 pygame.display.update()
                 time.sleep(1)
-                pygame.draw.rect(screen, (0,128,0), (0, 640, 1300,200))
+                pygame.draw.rect(screen, (0, 128, 0), (0, 640, 1300, 200))
                 pygame.draw.rect(screen, (0, 128, 0), (200, 40, 1300, 200))
                 pygame.display.update()
                 break
@@ -473,7 +494,7 @@ def main():
             elif p.getScore() == 21 and len(p.cards) == 2:
                 allowHit = False
                 playerChips += betChips * 3
-                label = myfont.render('BLACK JACK!', 1, (255, 255, 255))
+                label = myfont.render("BLACK JACK!", 1, (255, 255, 255))
                 screen.blit(label, (420, 430))
                 updateChips()
                 pygame.display.update()
@@ -489,14 +510,18 @@ def main():
                 updateScore()
                 pygame.display.update()
 
-# ---------------------------------------------------------------------------------------------------------
+        # ---------------------------------------------------------------------------------------------------------
         # DEALER
 
         if playerTurn == False:
             drawCard(cardImage(dealerCards[1][0], dealerCards[1][1]), 500, 50)
             try:
                 ind = onTable.index([cardBack, 500, 50])
-                onTable[ind] = [cardImage(dealerCards[1][0], dealerCards[1][1]), 500, 50]
+                onTable[ind] = [
+                    cardImage(dealerCards[1][0], dealerCards[1][1]),
+                    500,
+                    50,
+                ]
             except:
                 pass
             updateScore()
@@ -524,28 +549,28 @@ def main():
 
             if d.getScore() > p.getScore():
                 if d.getScore() < 22:
-                    label = myfont.render('You Lost', 1, (255,255,255))
+                    label = myfont.render("You Lost", 1, (255, 255, 255))
                     screen.blit(label, (510, 430))
                     updateChips()
                     pygame.display.update()
                     break
                 else:
                     playerChips += betChips * 2
-                    label = myfont.render('Dealer Bust\'s, You Win', 1, (255,255,255))
+                    label = myfont.render("Dealer Bust's, You Win", 1, (255, 255, 255))
                     screen.blit(label, (230, 430))
                     updateChips()
                     pygame.display.update()
                     break
             elif d.getScore() < p.getScore():
                 playerChips += betChips * 2
-                label = myfont.render('Winner!', 1, (255,255,255))
+                label = myfont.render("Winner!", 1, (255, 255, 255))
                 screen.blit(label, (475, 430))
                 updateChips()
                 pygame.display.update()
                 break
             else:
                 playerChips += betChips
-                label = myfont.render('Tie', 1, (255,255,255))
+                label = myfont.render("Tie", 1, (255, 255, 255))
                 screen.blit(label, (600, 450))
                 updateChips()
                 pygame.display.update()
@@ -558,6 +583,5 @@ def main():
     reset()
     restart()
 
+
 firstStart()
-
-

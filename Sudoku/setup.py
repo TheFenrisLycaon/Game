@@ -5,4 +5,4 @@ import pygame
 import time
 
 
-setup(console=['gui.py'])
+setup(console=["gui.py"])

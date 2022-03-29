@@ -3,18 +3,18 @@ EMPTY = " "
 
 class Peice:
     def __int__(self):
-        """ Initaializes a piece """
+        """Initaializes a piece"""
         self.WHITE = " "
         self.BLACK = " "
         self.character = " "
         self.position = [0, 0]
 
     def __repr__(self) -> str:
-        """ Representation of the Character"""
+        """Representation of the Character"""
         return self.character
 
     def __str__(self):
-        """ Representation of the Character"""
+        """Representation of the Character"""
         return self.character
 
 
@@ -22,7 +22,7 @@ class rook(Peice):
     def __init__(self, c, y, x):
         self.WHITE = "♜"
         self.BLACK = "♖"
-        self.character = self.WHITE*c + self.BLACK*(not c)
+        self.character = self.WHITE * c + self.BLACK * (not c)
         self.x = x
         self.y = y
 
@@ -44,7 +44,7 @@ class knight(Peice):
     def __init__(self, c, y, x):
         self.WHITE = "♞"
         self.BLACK = "♘"
-        self.character = self.WHITE*c + self.BLACK*(not c)
+        self.character = self.WHITE * c + self.BLACK * (not c)
         self.position = [x, y]
 
     def move(self):
@@ -55,7 +55,7 @@ class bishop(Peice):
     def __init__(self, c, y, x):
         self.WHITE = "♝"
         self.BLACK = "♗"
-        self.character = self.WHITE*c + self.BLACK*(not c)
+        self.character = self.WHITE * c + self.BLACK * (not c)
         self.position = [x, y]
 
     def move(self):
@@ -66,7 +66,7 @@ class queen(Peice):
     def __init__(self, c, y, x):
         self.WHITE = "♛"
         self.BLACK = "♕"
-        self.character = self.WHITE*c + self.BLACK*(not c)
+        self.character = self.WHITE * c + self.BLACK * (not c)
         self.position = [x, y]
 
     def move(self):
@@ -77,7 +77,7 @@ class king(Peice):
     def __init__(self, c, y, x):
         self.WHITE = "♚"
         self.BLACK = "♔"
-        self.character = self.WHITE*c + self.BLACK*(not c)
+        self.character = self.WHITE * c + self.BLACK * (not c)
         self.position = [x, y]
 
     def move(self, newX, newY):
@@ -89,7 +89,7 @@ class pawn(Peice):
     def __init__(self, c, y, x):
         self.WHITE = "♟"
         self.BLACK = "♙"
-        self.character = self.WHITE*c + self.BLACK*(not c)
+        self.character = self.WHITE * c + self.BLACK * (not c)
         self.x, self.y = x, y
         self.c = c
 
@@ -101,7 +101,7 @@ class pawn(Peice):
         """
 
         board[self.y][self.x] = EMPTY  # Clear current Position
-        
+
         if killIntent:
             if self.c == 1:
                 self.x += direction

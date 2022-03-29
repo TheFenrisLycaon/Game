@@ -2,6 +2,7 @@ from pieces import *
 
 EMPTY = " "
 
+
 class board:
     def __init__(self):
 
@@ -39,35 +40,27 @@ class board:
         bbr = self.bbr = bishop(0, 7, 7)
 
         self.status = [
-            [
-                rwl, nwl, bwl, kw, qw, bwr, nwr, rwr
-            ],
-            [
-                pw_1, pw_2, pw_3, pw_4, pw_5, pw_6, pw_7, pw_8
-            ],
+            [rwl, nwl, bwl, kw, qw, bwr, nwr, rwr],
+            [pw_1, pw_2, pw_3, pw_4, pw_5, pw_6, pw_7, pw_8],
             *[[EMPTY] * 8 for _ in range(4)],
-            [
-                pb_1, pb_2, pb_3, pb_4, pb_5, pb_6, pb_7, pb_8
-            ],
-            [
-                rbl,  nbl, bbl, qb, kb,  bbr, nbr, rbr
-            ],
+            [pb_1, pb_2, pb_3, pb_4, pb_5, pb_6, pb_7, pb_8],
+            [rbl, nbl, bbl, qb, kb, bbr, nbr, rbr],
         ]
 
     def show(self, flipStatus=False):
         if flipStatus:
             for row in self.status:
                 print(" --------------------------------------")
-                print('|', end="")
+                print("|", end="")
                 for p in row:
-                    print(p, ' | ', end="")
+                    print(p, " | ", end="")
                 print("")
             print(" --------------------------------------")
         else:
             for row in reversed(self.status):
                 print(" --------------------------------------")
-                print('|', end="")
+                print("|", end="")
                 for p in reversed(row):
-                    print(p, ' | ', end="")
+                    print(p, " | ", end="")
                 print("")
             print(" --------------------------------------")

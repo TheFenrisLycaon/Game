@@ -9,22 +9,22 @@ time.sleep(1)
 print("Start guessing...\nHint:It is a fruit")
 time.sleep(0.5)
 
-someWords = '''apple banana mango strawberry  
+someWords = """apple banana mango strawberry  
 orange grape pineapple apricot lemon coconut watermelon 
-cherry papaya berry peach lychee muskmelon'''
+cherry papaya berry peach lychee muskmelon"""
 
-someWords = someWords.split(' ')
+someWords = someWords.split(" ")
 word = random.choice(someWords)
-guesses = ''
+guesses = ""
 turns = 5
 
 while turns > 0:
     failed = 0
     for char in word:
         if char in guesses:
-            print(char, end=' ')
+            print(char, end=" ")
         else:
-            print("_", end=' ')
+            print("_", end=" ")
             failed += 1
     if failed == 0:
         print("\nYou won")
@@ -32,18 +32,18 @@ while turns > 0:
     print
     guess = input("\nGuess a character:")
     if not guess.isalpha():
-        print('Enter only a LETTER')
+        print("Enter only a LETTER")
         continue
     elif len(guess) > 1:
-        print('Enter only a SINGLE letter')
+        print("Enter only a SINGLE letter")
         continue
     elif guess in guesses:
-        print('You have already guessed that letter')
+        print("You have already guessed that letter")
         continue
     guesses += guess
     if guess not in word:
         turns -= 1
         print("\nWrong")
-        print("You have", + turns, 'more guesses\n')
+        print("You have", +turns, "more guesses\n")
         if turns == 0:
             print("\nYou Loose")
